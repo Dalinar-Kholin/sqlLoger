@@ -1,4 +1,4 @@
-package scamSqlLogger
+package main
 
 import (
 	"fmt"
