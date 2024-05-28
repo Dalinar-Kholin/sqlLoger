@@ -1,4 +1,4 @@
-package main
+package scamSqlLogger
 
 import (
 	"fmt"
@@ -25,8 +25,6 @@ func SetUpLogger(file string) error {
 	return err
 }
 
-func main() {
-	err := SetUpLogger("query Logger")
-	fmt.Printf("%v\n", err)
-	Exec("dupa", "chuj")
+func essa[T float32 | int](xd T) {
+
 }
