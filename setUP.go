@@ -21,7 +21,7 @@ func Exec(s ...string) {
 	}
 	handler.Write([]byte(r + "\n"))
 
-	fmt.Printf("%v\n", r)
+	fmt.Printf(">>> %v <<<\n", r)
 }
 
 func SetUpLogger(file, connectionString string) error {
