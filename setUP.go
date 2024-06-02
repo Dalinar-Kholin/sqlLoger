@@ -1,4 +1,4 @@
-package superLib
+package sqlLoger
 
 import (
 	"database/sql"
