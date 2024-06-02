@@ -2,6 +2,7 @@ package sqlLoger
 
 import (
 	"database/sql"
+	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"log"
 	"os"
@@ -16,7 +17,7 @@ var (
 func concatString(s ...string) string {
 	r := s[0]
 	for _, v := range s[1:] {
-		r = strings.Replace(r, "?", v, 1)
+		r = strings.Replace(r, "?", fmt.Sprintf("'%s'", v), 1)
 	}
 	_, err := handler.Write([]byte(r + "\n"))
 	if err != nil {
