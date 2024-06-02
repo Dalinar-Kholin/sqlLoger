@@ -2,26 +2,37 @@ package superLib
 
 import (
 	"database/sql"
-	"fmt"
 	"log"
 	"os"
 	"strings"
 )
 
 var (
-	fileName  = ""
 	handler   *os.File
 	dbConnect *sql.DB
 )
 
-func Exec(s ...string) {
+func concatString(s ...string) string {
 	r := s[0]
 	for _, v := range s[1:] {
-		strings.Replace(r, "?", v, 1)
+		r = strings.Replace(r, "?", v, 1)
 	}
-	handler.Write([]byte(r + "\n"))
+	_, err := handler.Write([]byte(r + "\n"))
+	if err != nil {
+		return ""
+	}
+	return r
+}
 
-	fmt.Printf(">>> %v <<<\n", r)
+func QueryRow(s ...string) *sql.Row {
+	r := concatString(s...)
+	return dbConnect.QueryRow(r)
+
+}
+
+func Exec(s ...string) (sql.Result, error) {
+	r := concatString(s...)
+	return dbConnect.Exec(r)
 }
 
 func SetUpLogger(file, connectionString string) error {
@@ -33,8 +44,4 @@ func SetUpLogger(file, connectionString string) error {
 	}
 	dbConnect = db
 	return err
-}
-
-func essa[T float32 | int](xd T) {
-
 }
