@@ -1,4 +1,4 @@
-module github.com/Dalinar-Kholin/superLib
+module github.com/Dalinar-Kholin/sqlLoger
 
 go 1.22
 
